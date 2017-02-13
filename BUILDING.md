@@ -39,8 +39,20 @@ Alternatively, you can use the following shortcuts to build and run test program
 
     premake5 server         // build run a yojimbo server on localhost on UDP port 40000
 
-    premake5 client         // build and run a yojimbo client that connects to the server running on localhost 
-   
+    premake5 client         // build and run a yojimbo client that connects to the server running on localhost
+
+## Ubuntu CMakeList.txt
+
+sudo apt-get install libsodium-dev
+
+mkdir build
+
+cd build
+
+cmake ..
+
+make
+
 ## Run a yojimbo server inside Docker
 
 **libyojimbo** supports Docker on Windows, Mac and Linux.
@@ -95,7 +107,7 @@ Which should return a match response in JSON that looks something like this:
 
 ## Connect a secure client
 
-You can run the "secure_client" program to securely connect a client to that server through the matcher. 
+You can run the "secure_client" program to securely connect a client to that server through the matcher.
 
 Connecting this way requires having the matcher running, eg. "premake5 matcher"
 
@@ -133,7 +145,7 @@ When a secure server is running, you will notice that connecting via "secure_cli
 
 This is the entire point of secure servers. **Secure servers only allow connections that come from the matcher.**
 
-This is accomplished via an encrypted connect token that the matchmaker generates and passes back to the client. This connect token is valid only for a particular globally unique 64bit client id (of your choice), for a limited period of time, and for a limited whitelist of server addresses. 
+This is accomplished via an encrypted connect token that the matchmaker generates and passes back to the client. This connect token is valid only for a particular globally unique 64bit client id (of your choice), for a limited period of time, and for a limited whitelist of server addresses.
 
 Connect tokens cannot be decrypted or forged by clients because they are encrypted and signed with a private key known only to the matcher and the dedicated server instances. This is also why libyojimbo is designed only for games that host dedicated servers. The private key must be known only to the matcher and the dedicated server instances for the security model to work.
 
@@ -146,8 +158,8 @@ To build the documentation first install doxygen on your platform.
 Once you have doxygen installed and in your path, you can build and view the documentation with this command:
 
     premake5 docs
-    
-More documentation including getting started guide and usage documentation is coming shortly. 
+
+More documentation including getting started guide and usage documentation is coming shortly.
 
 Until then, if you have questions and you don't find the answer you need in the documentation, please create an issue at http://www.libyojimbo.com and I'll do my best to help you out.
 
