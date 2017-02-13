@@ -34,3 +34,9 @@ Secure
 cov-int
 Docker/libyojimbo
 docs
+
+#qt
+CMakeLists.txt.user
+
+#build
+build/

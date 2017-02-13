@@ -8,6 +8,7 @@ cmake_minimum_required(VERSION 2.8.7)
 project(LIBYOJIMBO CXX C)
 
 include_directories(windows)
+include_directories(.)
 
 file(GLOB HPP_FILES yojimbo_*.h)
 file(GLOB CPP_FILES yojimbo_*.cpp)
@@ -20,10 +21,20 @@ set(YOJIMBO_SRC yojimbo.h
 		tlsf/tlsf.h
 		tlsf/tlsf.c
 )
-
+# lib yojimbo
 add_library(yojimbo STATIC ${YOJIMBO_SRC})
-target_link_libraries(yojimbo sodium)
+target_link_libraries(yojimbo sodium mbedtls mbedx509 mbedcrypto)
 
-include_directories(.)
-add_executable(test_yojimbo tests/info.cpp)
+# info
+add_executable(test_info tests/info.cpp)
+target_link_libraries(test_info yojimbo)
+
+# test
+add_executable(test_yojimbo tests/test.cpp)
 target_link_libraries(test_yojimbo yojimbo)
+
+# client
+add_executable(client tests/client.cpp
+                      tests/shared.h
+                      )
+target_link_libraries(client yojimbo)

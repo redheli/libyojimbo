@@ -45,6 +45,8 @@ Alternatively, you can use the following shortcuts to build and run test program
 
 sudo apt-get install libsodium-dev
 
+sudo apt-get install libmbedtls-dev
+
 mkdir build
 
 cd build
